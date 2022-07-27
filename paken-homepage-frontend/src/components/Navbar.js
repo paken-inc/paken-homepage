@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../images/logo.png';
 
 export default function Navbar() {
@@ -16,16 +17,16 @@ export default function Navbar() {
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" href="#">Home</a>
+              <NavLink to="/" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Home</NavLink>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Products</a>
+              <NavLink to="/products" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Products</NavLink>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <NavLink to="/about" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>About</NavLink>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Blog</a>
+              <NavLink to="/blog" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Blog</NavLink>
             </li>
           </ul>
           <ul class="navbar-nav ms-auto">
