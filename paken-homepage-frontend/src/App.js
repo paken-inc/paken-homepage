@@ -1,6 +1,7 @@
 import {useEffect} from 'react';
 import config from './config.json';
 import axios from 'axios';
+import logo from './images/logo.png';
 
 import './App.css';
 
@@ -20,7 +21,11 @@ function App() {
     <>
       <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Paken</a>
+          <a class="navbar-brand" href="#">
+            <div class="logo">
+              <img src={logo} />
+            </div>
+          </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -47,13 +52,24 @@ function App() {
           </div>
         </div>
       </nav>
+      <div class="container-fluid p-0">
+        <div class="px-4 py-5 text-center bg-grey">
+          <h1 class="display-5 fw-bold">Welcome to Paken</h1>
+          <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">Web Development, Software, Mobile, Cloud, Data Science</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+              <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Sign Up</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
       <div class="container">
 
         <footer class="pt-4 my-md-5 pt-md-5 border-top">
           <div class="row">
             <div class="col-12 col-md">
-              <img class="mb-2" src="https://via.placeholder.com/400x300" alt="" width="24" height="24" />
-              <small class="d-block mb-3 text-muted">&copy; 2022</small>
+              <small class="d-block mb-3 text-muted">&copy; Paken 2022</small>
             </div>
             <div class="col-6 col-md">
               <h5>Products</h5>
