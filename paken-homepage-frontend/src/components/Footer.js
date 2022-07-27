@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
@@ -11,25 +12,21 @@ export default function Footer() {
             <div class="col-6 col-md">
                 <h5>Products</h5>
                 <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Item1</a></li>
-                <li><a class="text-muted" href="#">Item2</a></li>
-                <li><a class="text-muted" href="#">Item3</a></li>
+                <li><Link to="/stackapp" class="text-muted">Stackapp</Link></li>
                 </ul>
             </div>
             <div class="col-6 col-md">
                 <h5>About</h5>
                 <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Item1</a></li>
-                <li><a class="text-muted" href="#">Item2</a></li>
-                <li><a class="text-muted" href="#">Item3</a></li>
+                <li><Link to="/about" class="text-muted">About</Link></li>
                 </ul>
             </div>
             <div class="col-6 col-md">
-                <h5>Blog</h5>
+                <h5>Users</h5>
                 <ul class="list-unstyled text-small">
-                <li><a class="text-muted" href="#">Item1</a></li>
-                <li><a class="text-muted" href="#">Item2</a></li>
-                <li><a class="text-muted" href="#">Item3</a></li>
+                <li><Link to="/sign-up" class="text-muted">Sign Up</Link></li>
+                <li><Link to="/login" class="text-muted">Login</Link></li>
+                <li><Link to="/my-account" class="text-muted">My Account</Link></li>
                 </ul>
             </div>
             </div>
