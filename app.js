@@ -6,6 +6,7 @@ var logger = require('morgan');
 var mysql = require('mysql2');
 var cors = require('cors');
 var bcrypt = require('bcrypt');
+var {config} = require('./config.json');
 
 var app = express();
 
