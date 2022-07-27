@@ -62,3 +62,7 @@ html {
 .logo img {
   width: 100%;
 }
+
+.rounded-corners-lg {
+  border-radius: 25px;
+}

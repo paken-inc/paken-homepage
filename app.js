@@ -39,7 +39,7 @@ function connectDB() {
 }
 
 
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
   res.render('index');
 });
 
@@ -62,33 +62,37 @@ app.post("/api/users/register", (req, res) => {
     res.json({status: "NOK", error: "Confirmação de password está errada."});
   }
 
-  var password_salt = await bcrypt.genSalt(10);
-  var password_hash = await bcrypt.hash(password, password_salt);
+  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(password, salt, function(err, password_hash) {
+      var con = connectDB();
 
-  var con = connectDB();
-
-  var sql = "SELECT * FROM users WHERE username = ?;";
-  con.query(sql, [username], function(err, result) {
-      if (err) {
-          console.log(err);
-          res.json({status: "NOK", error: "Ocorreu um erro na base de dados."});
-      }
-      if (result.length > 0) {
-        res.json({status: "NOK", error: "Este nome de utilizador já existe."});
-      }
-      var sql2 = `
-        INSERT INTO users
-        (name, username, password, email)
-        VALUES (?, ?, ?, ?)
-      `;
-      con.query(sql2, [name, username, password_hash, email], function(err2, result2) {
-          if (err2) {
-              console.log(err2);
+      var sql = "SELECT * FROM users WHERE username = ?;";
+      con.query(sql, [username], function(err, result) {
+          if (err) {
+              console.log(err);
               res.json({status: "NOK", error: "Ocorreu um erro na base de dados."});
           }
-          res.json({status: "OK", data: "O utilizador foi registado com sucesso."});
+          if (result.length > 0) {
+            res.json({status: "NOK", error: "Este nome de utilizador já existe."});
+          }
+          var sql2 = `
+            INSERT INTO users
+            (name, username, password, email)
+            VALUES (?, ?, ?, ?)
+          `;
+          con.query(sql2, [name, username, password_hash, email], function(err2, result2) {
+              if (err2) {
+                  console.log(err2);
+                  res.json({status: "NOK", error: "Ocorreu um erro na base de dados."});
+              }
+              res.json({status: "OK", data: "O utilizador foi registado com sucesso."});
+          });
       });
+    });
   });
+  
+
+  
 });
 
 app.post("/api/users/login", (req, res) => {
@@ -112,13 +116,14 @@ app.post("/api/users/login", (req, res) => {
           res.json({status: "NOK", error: "Ocorreu um erro na base de dados."});
       }
       if (result.length > 0) {
-        var validPassword = await bcrypt.compare(password, result[0]['password']);
-        if (validPassword) {
-          res.json({status: "OK", data: "A autenticação foi bem-sucedida."});
-        }
-        else {
-          res.json({status: "NOK", error: "Password errada."})
-        }
+        bcrypt.compare(password, result[0]['password'], function(err, validPassword) {
+          if (validPassword) {
+            res.json({status: "OK", data: "A autenticação foi bem-sucedida."});
+          }
+          else {
+            res.json({status: "NOK", error: "Password errada."})
+          }
+        });
       }
       else {
         res.json({status: "NOK", error: "Este utilizador/email não existe."});

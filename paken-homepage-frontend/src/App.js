@@ -11,6 +11,7 @@ import axios from 'axios';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Products from './components/Products';
+import SignUp from './components/SignUp';
 
 import './App.css';
 
@@ -32,6 +33,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/sign-up" element={<SignUp />} />
       </Routes>
     </Router>
   );
