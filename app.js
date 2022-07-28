@@ -7,6 +7,8 @@ var mysql = require('mysql2');
 var cors = require('cors');
 var bcrypt = require('bcrypt');
 var {config} = require('./config.json');
+var secretConfig = require('./secret-config.json')
+const session = require('express-session');
 
 var app = express();
 
@@ -20,6 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
+app.use(session({secret: secretConfig.SESSION_KEY, name: secretConfig.SESSION_NAME, resave: true, saveUninitialized:false}));
 
 function connectDB() {
   var con = mysql.createConnection({
@@ -54,12 +57,12 @@ app.post("/api/users/register", (req, res) => {
 
   for (var i in params) {
     if (params[i] == undefined || params[i] == "") {
-      res.json({status: "NOK", error: "Parâmetro não está definido."});
+      res.json({status: "NOK", error: "Parameter is undefined."});
     }
   }
 
   if (password != passwordConfirm) {
-    res.json({status: "NOK", error: "Confirmação de password está errada."});
+    res.json({status: "NOK", error: "Password confirmation is wrong."});
   }
 
   bcrypt.genSalt(10, function(err, salt) {
@@ -70,10 +73,10 @@ app.post("/api/users/register", (req, res) => {
       con.query(sql, [username], function(err, result) {
           if (err) {
               console.log(err);
-              res.json({status: "NOK", error: "Ocorreu um erro na base de dados."});
+              res.json({status: "NOK", error: "There was an error on the database query."});
           }
           if (result.length > 0) {
-            res.json({status: "NOK", error: "Este nome de utilizador já existe."});
+            res.json({status: "NOK", error: "This username already exists."});
           }
           var sql2 = `
             INSERT INTO users
@@ -83,9 +86,9 @@ app.post("/api/users/register", (req, res) => {
           con.query(sql2, [name, username, password_hash, email], function(err2, result2) {
               if (err2) {
                   console.log(err2);
-                  res.json({status: "NOK", error: "Ocorreu um erro na base de dados."});
+                  res.json({status: "NOK", error: "There was an error on the database query."});
               }
-              res.json({status: "OK", data: "O utilizador foi registado com sucesso."});
+              res.json({status: "OK", data: "This user has been registered successfully."});
           });
       });
     });
@@ -103,7 +106,7 @@ app.post("/api/users/login", (req, res) => {
 
   for (var i in params) {
     if (params[i] == undefined || params[i] == "") {
-      res.json({status: "NOK", error: "Parâmetro não está definido."});
+      res.json({status: "NOK", error: "Parameter is undefined."});
     }
   };
 
@@ -113,22 +116,30 @@ app.post("/api/users/login", (req, res) => {
   con.query(sql, [username, username], function(err, result) {
       if (err) {
           console.log(err);
-          res.json({status: "NOK", error: "Ocorreu um erro na base de dados."});
+          res.json({status: "NOK", error: "There was an error on the database query."});
       }
       if (result.length > 0) {
         bcrypt.compare(password, result[0]['password'], function(err, validPassword) {
           if (validPassword) {
-            res.json({status: "OK", data: "A autenticação foi bem-sucedida."});
+            req.session.loggedIn = true;
+            req.session.userId = result[0]['id'];
+            res.json({status: "OK", data: "Login has been successful."});
           }
           else {
-            res.json({status: "NOK", error: "Password errada."})
+            res.json({status: "NOK", error: "Wrong password."})
           }
         });
       }
       else {
-        res.json({status: "NOK", error: "Este utilizador/email não existe."});
+        res.json({status: "NOK", error: "This username or email doesn't exist."});
       }
   });
+});
+
+app.post("/api/users/logout", (req, res) => {
+  req.session.loggedIn = false;
+  req.session.userId = null;
+  res.redirect("/");
 });
 
 app.get("/api/posts/list", (req, res) => {
