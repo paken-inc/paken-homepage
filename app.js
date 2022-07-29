@@ -41,11 +41,6 @@ function connectDB() {
   return con;
 }
 
-
-app.get('/', (req, res) => {
-  res.render('index');
-});
-
 app.post("/api/users/register", (req, res) => {
   var name = req.body.name;
   var username = req.body.username;
@@ -123,6 +118,8 @@ app.post("/api/users/login", (req, res) => {
           if (validPassword) {
             req.session.loggedIn = true;
             req.session.userId = result[0]['id'];
+            req.session.save();
+            console.log(req.session);
             res.json({status: "OK", data: "Login has been successful."});
           }
           else {
@@ -136,10 +133,93 @@ app.post("/api/users/login", (req, res) => {
   });
 });
 
-app.post("/api/users/logout", (req, res) => {
+app.get("/api/users/logout", (req, res) => {
   req.session.loggedIn = false;
   req.session.userId = null;
   res.redirect("/");
+});
+
+app.post("/api/users/change-profile", (req, res) => {
+  var id = req.body.id;
+  var username = req.body.username;
+  var name = req.body.name;
+  var email = req.body.email;
+
+  var con = connectDB();
+
+  var sql = "UPDATE users SET username = ?, name = ?, email = ? WHERE id = ?";
+  con.query(sql, [username, name, email, id], function(err, result) {
+    res.json({status: "OK", data: "This user's profile has been updated."});
+  });
+});
+
+app.post("/api/users/change-password", (req, res) => {
+  var id = req.body.id;
+  var oldPassword = req.body.oldPassword;
+  var newPassword = req.body.newPassword;
+  var newPasswordConfirm = req.body.newPasswordConfirm;
+
+  var con = connectDB();
+
+  if (newPassword != newPasswordConfirm) {
+    res.json({status: "NOK", error: "Password confirmation is wrong."})
+  }
+
+  var sql = "SELECT * FROM users WHERE id = ?;";
+  con.query(sql, [id], function(err, result) {
+      if (err) {
+          console.log(err);
+          res.json({status: "NOK", error: "There was an error on the database query."});
+      }
+      if (result.length > 0) {
+        bcrypt.compare(oldPassword, result[0]['password'], function(err, validPassword) {
+          if (validPassword) {
+            bcrypt.genSalt(10, function(err, salt) {
+              bcrypt.hash(newPassword, salt, function(err, password_hash) {
+                var sql2 = `
+                  UPDATE users
+                  SET password = ?
+                  WHERE id = ?
+                `;
+                con.query(sql2, [password_hash, id], function(err2, result2) {
+                  res.json({status: "OK", data: "Password has been changed."});
+                });
+              });
+            });
+          }
+          else {
+            res.json({status: "NOK", error: "Wrong password."})
+          }
+        });
+      }
+      else {
+        res.json({status: "NOK", error: "This user ID doesn't exist."});
+      }
+  });
+});
+
+app.get("/api/users/get-current-user", (req, res) => {
+  console.log(req.session);
+  console.log(req.session.loggedIn);
+  console.log(req.session.userId);
+  if (req.session.loggedIn) {
+    var id = req.session.userId;
+
+    var con = connectDB();
+
+    var sql = "SELECT id, username, name, email FROM users WHERE id = ?;";
+    con.query(sql, [id], function(err, result) {
+      if (result.length > 0) {
+        res.json({status: "OK", data: result[0]});
+      }
+      else {
+        res.json({status: "NOK", error: "This user ID doesn't exist."})
+      }
+    });
+  }
+  else {
+    res.json({status: "NOK", error: "Nobody is logged in."})
+  }
 });
 
 app.get("/api/posts/list", (req, res) => {
@@ -179,6 +259,43 @@ app.post("/api/posts/delete", (req, res) => {
       res.json({status: "OK", data: "A post has been deleted."})
   });
 });
+
+app.get('/', (req,res) => {
+  console.log(req.session.loggedIn);
+  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+});
+
+app.get('/login', (req,res) => {
+  console.log(req.session.loggedIn);
+  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+});
+
+app.get('/my-account', (req,res) => {
+  console.log(req.session.loggedIn);
+  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+});
+
+app.get('/products', (req,res) => {
+  console.log(req.session.loggedIn);
+  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+});
+
+app.get('/sign-up', (req,res) => {
+  console.log(req.session.loggedIn);
+  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+});
+
+app.get('/blog', (req,res) => {
+  console.log(req.session.loggedIn);
+  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+});
+
+app.get('/about', (req,res) => {
+  console.log(req.session.loggedIn);
+  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+});
+
+app.use(express.static('paken-homepage-frontend/build'))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

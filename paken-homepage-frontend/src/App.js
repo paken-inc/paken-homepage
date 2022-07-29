@@ -13,6 +13,7 @@ import Home from './components/Home';
 import Products from './components/Products';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
+import MyAccount from './components/MyAccount';
 
 import './App.css';
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/products" element={<Products />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/my-account" element={<MyAccount />} />
       </Routes>
     </Router>
   );
