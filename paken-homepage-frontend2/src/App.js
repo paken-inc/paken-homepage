@@ -21,6 +21,7 @@ import $ from 'jquery';
 window.jQuery = $;
 window.$ = $;
 global.jQuery = $;
+const bootstrap = require('bootstrap');
 
 function App() {
 

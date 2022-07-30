@@ -7,6 +7,7 @@ import $ from 'jquery';
 window.jQuery = $;
 window.$ = $;
 global.jQuery = $;
+const bootstrap = require('bootstrap');
 
 export default function Login() {
     const navigate = useNavigate();

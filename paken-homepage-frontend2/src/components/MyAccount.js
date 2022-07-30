@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Footer from './Footer.js';
 import config from '../config.json';
 import axios from 'axios';
+import { redirect } from 'express/lib/response.js';
 
 export default function MyAccount() {
   const navigate = useNavigate();
