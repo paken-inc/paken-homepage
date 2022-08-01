@@ -11,6 +11,7 @@ import axios from 'axios';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Products from './components/Products';
+import Blog from './components/Blog';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import MyAccount from './components/MyAccount';
@@ -37,6 +38,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/blog" element={<Blog />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/my-account" element={<MyAccount />} />
