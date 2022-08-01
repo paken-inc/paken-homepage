@@ -12,7 +12,7 @@ export default function Footer() {
             <div class="col-6 col-md">
                 <h5>Products</h5>
                 <ul class="list-unstyled text-small">
-                <li><Link to="/stackapp" class="text-muted">Stackapp</Link></li>
+                <li><a target="_blank" href="https://stackapp.paken.xyz" class="text-muted">Stackapp</a></li>
                 </ul>
             </div>
             <div class="col-6 col-md">

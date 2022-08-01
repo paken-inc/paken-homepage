@@ -98,7 +98,7 @@ export default function MyAccount() {
         setChangeProfileData(response['data']['data']);
       }
       else {
-        navigate("/");
+        navigate("/login");
       }
     })
     .catch(function(err) {

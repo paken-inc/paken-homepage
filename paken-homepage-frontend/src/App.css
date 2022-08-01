@@ -71,3 +71,22 @@ html {
   list-style-type: none;
   padding-left: 0;
 }
+
+.products {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.products li {
+  display: inline-block;
+  margin-right: 25px;
+  margin-bottom: 25px;
+}
+
+.stackapp-logo-lg {
+  width: 125px;
+}
+
+.stackapp-logo-lg img {
+  width: 100%;
+}
