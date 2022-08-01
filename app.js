@@ -172,6 +172,7 @@ app.post("/api/users/login", (req, res) => {
           if (validPassword) {
             req.session.loggedIn = true;
             req.session.userId = result[0]['id'];
+            req.session.isAdmin = result[0]['is_admin'];
             req.session.save();
             console.log(req.session);
             res.json({status: "OK", data: "Login has been successful."});
@@ -292,7 +293,9 @@ app.post("/api/posts/insert", (req, res) => {
   var title = req.body.title;
   var content = req.body.content;
   var user_id = req.body.user_id;
-  var sql = "INSERT INTO posts (user_id, title, content) VALUES (?, ?);";
+
+  var con = connectDB();
+  var sql = "INSERT INTO posts (user_id, title, content) VALUES (?, ?, ?);";
   con.query(sql, [user_id, title, content], function(err, result) {
       if (err) {
           console.log(err);
@@ -350,6 +353,21 @@ app.get('/about', (req,res) => {
 });
 
 app.get('/admin', (req,res) => {
+  console.log(req.session.loggedIn);
+  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+});
+
+app.get('/admin/login', (req,res) => {
+  console.log(req.session.loggedIn);
+  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+});
+
+app.get('/admin/posts', (req,res) => {
+  console.log(req.session.loggedIn);
+  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+});
+
+app.get('/admin/register', (req,res) => {
   console.log(req.session.loggedIn);
   res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
 });

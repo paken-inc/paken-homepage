@@ -36,7 +36,7 @@ export default function Navbar() {
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <h1>Paken Admin Portal</h1>
+        <h1>Paken Admin Portal</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -44,16 +44,16 @@ export default function Navbar() {
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <NavLink to="/admin" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Home</NavLink>
+              <NavLink to="/admin" end className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Home</NavLink>
             </li>
             <li class="nav-item">
-              <NavLink to="/admin/login" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Login</NavLink>
+              <NavLink to="/admin/login" end className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Login</NavLink>
             </li>
             <li class="nav-item">
-              <NavLink to="/admin/register" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Register</NavLink>
+              <NavLink to="/admin/register" end className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Register</NavLink>
             </li>
             <li class="nav-item">
-              <NavLink to="/admin/posts" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Posts</NavLink>
+              <NavLink to="/admin/posts" end className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Posts</NavLink>
             </li>
             
           </ul>

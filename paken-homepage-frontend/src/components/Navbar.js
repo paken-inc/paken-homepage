@@ -58,12 +58,16 @@ export default function Navbar() {
             </li>
           </ul>
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item mx-2">
-              <Link to="/login" class="btn btn-outline-primary">Login</Link>
-            </li>
-            <li class="nav-item mx-2">
-              <Link to="/sign-up" class="btn btn-outline-primary">Sign up</Link>
-            </li>
+            {user.id == "" &&
+              <li class="nav-item mx-2">
+                <Link to="/login" class="btn btn-outline-primary">Login</Link>
+              </li>
+            }
+            {user.id == "" &&
+              <li class="nav-item mx-2">
+                <Link to="/sign-up" class="btn btn-outline-primary">Sign up</Link>
+              </li>
+            }
             {user.id != "" &&
                 <li class="nav-item mx-2">
                   <Link to="/my-account" class="btn btn-outline-primary">My Account</Link>

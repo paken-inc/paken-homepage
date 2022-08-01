@@ -66,3 +66,7 @@ html {
 .rounded-corners-lg {
   border-radius: 25px;
 }
+
+.posts {
+  list-style-type: none;
+}
