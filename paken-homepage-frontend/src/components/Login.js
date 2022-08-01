@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import config from '../config.json';
+import Navbar from './Navbar';
 import Footer from './Footer';
 import $ from 'jquery';
 window.jQuery = $;
@@ -43,6 +44,7 @@ export default function Login() {
   
     return (
       <>
+        <Navbar />
         <div className="container-fluid">
           <div className="row justify-content-center m-5">
             <div className="col-md-4 bg-grey p-5 rounded-corners-lg">

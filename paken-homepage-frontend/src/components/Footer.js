@@ -27,6 +27,7 @@ export default function Footer() {
                 <li><Link to="/sign-up" class="text-muted">Sign Up</Link></li>
                 <li><Link to="/login" class="text-muted">Login</Link></li>
                 <li><Link to="/my-account" class="text-muted">My Account</Link></li>
+                <li><Link to="/admin" class="text-muted">Admin</Link></li>
                 </ul>
             </div>
             </div>

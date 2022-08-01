@@ -88,6 +88,60 @@ app.post("/api/users/register", (req, res) => {
       });
     });
   });
+});
+
+app.post("/api/users/create-admin-account", (req, res) => {
+  var name = req.body.name;
+  var username = req.body.username;
+  var password = req.body.password;
+  var passwordConfirm = req.body.passwordConfirm;
+  var email = req.body.email;
+  var secretToken = req.body.secretToken;
+
+  var params = [name, username, password, passwordConfirm, email, secretToken];
+
+  for (var i in params) {
+    if (params[i] == undefined || params[i] == "") {
+      res.json({status: "NOK", error: "Parameter is undefined."});
+    }
+  }
+
+  if (password != passwordConfirm) {
+    res.json({status: "NOK", error: "Password confirmation is wrong."});
+  }
+
+  if (secretToken != secretConfig.PAKEN_TOKEN) {
+    res.json({status: "NOK", error: "Secret token is wrong."})
+  }
+
+  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(password, salt, function(err, password_hash) {
+      var con = connectDB();
+
+      var sql = "SELECT * FROM users WHERE username = ?;";
+      con.query(sql, [username], function(err, result) {
+          if (err) {
+              console.log(err);
+              res.json({status: "NOK", error: "There was an error on the database query."});
+          }
+          if (result.length > 0) {
+            res.json({status: "NOK", error: "This username already exists."});
+          }
+          var sql2 = `
+            INSERT INTO users
+            (name, username, password, email, is_admin)
+            VALUES (?, ?, ?, ?, ?)
+          `;
+          con.query(sql2, [name, username, password_hash, email, 1], function(err2, result2) {
+              if (err2) {
+                  console.log(err2);
+                  res.json({status: "NOK", error: "There was an error on the database query."});
+              }
+              res.json({status: "OK", data: "This user has been registered successfully."});
+          });
+      });
+    });
+  });
   
 
   
@@ -291,6 +345,11 @@ app.get('/blog', (req,res) => {
 });
 
 app.get('/about', (req,res) => {
+  console.log(req.session.loggedIn);
+  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+});
+
+app.get('/admin', (req,res) => {
   console.log(req.session.loggedIn);
   res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
 });

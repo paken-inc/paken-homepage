@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 import Footer from './Footer.js';
 import config from '../config.json';
 import axios from 'axios';
@@ -110,6 +111,7 @@ export default function MyAccount() {
   }, []);
   return (
     <>
+      <Navbar />
       <div className="container-fluid">
         <div className="row justify-content-center m-5">
           <div className="col-md-4">
