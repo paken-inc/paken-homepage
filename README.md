@@ -25,3 +25,23 @@
     "PAKEN_TOKEN": "xxxxxxxxxxxxxx"
 }
 ```
+
+## Server Setup
+
+- Add ssh key to ~/.ssh/authorized_keys
+- Create new user
+- Activate firewall
+- Install Nginx
+- Install NodeJS
+- Git clone NodeJS Application
+- Change config.json with your URL on the back-end and the front-end.
+- Copy the secret-config.json file
+- Change the DB connection to your server's MySQL password
+- Install PM2
+- Install MySQL
+- Run this command to set MySQL password:
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'mynewpassword';
+- sudo mysql_secure_installation
+- Setup a reverse proxy for your app with Nginx on /etc/nginx/sites-available
+- Use PM2 to start your app's process
+- On the browser go to your server's URL to run the app
