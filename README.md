@@ -45,3 +45,8 @@
 - Setup a reverse proxy for your app with Nginx on /etc/nginx/sites-available
 - Use PM2 to start your app's process
 - On the browser go to your server's URL to run the app
+
+## Server setup in production
+
+- Change server name to your domain on /etc/nginx/sites-available
+- Run certbot
