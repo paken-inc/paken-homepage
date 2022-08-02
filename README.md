@@ -50,3 +50,15 @@
 
 - Change server name to your domain on /etc/nginx/sites-available
 - Run certbot
+
+## Important commands
+
+- Access to mysql:
+```
+mysql -u root -p
+```
+
+- Create SSL certificate
+```
+sudo certbot --nginx -d domain.com -d www.domain.com
+```
