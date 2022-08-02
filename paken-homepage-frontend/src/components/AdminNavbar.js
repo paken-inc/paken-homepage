@@ -47,15 +47,33 @@ export default function Navbar() {
               <NavLink to="/admin" end className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Home</NavLink>
             </li>
             <li class="nav-item">
-              <NavLink to="/admin/login" end className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Login</NavLink>
-            </li>
-            <li class="nav-item">
-              <NavLink to="/admin/register" end className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Register</NavLink>
-            </li>
-            <li class="nav-item">
               <NavLink to="/admin/posts" end className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>Posts</NavLink>
             </li>
-            
+          </ul>
+          <ul class="navbar-nav ms-auto">
+            {user.id == "" &&
+              <li class="nav-item mx-2">
+                <Link to="/admin/login" end class="btn btn-outline-primary">Login</Link>
+              </li>
+            }
+            {user.id == "" &&
+              <li class="nav-item mx-2">
+                <Link to="/admin/register" end class="btn btn-outline-primary">Create Admin Account</Link>
+              </li>
+            }
+            {user.id != "" &&
+                <li class="nav-item mx-2">
+                  <Link to="/my-account" class="btn btn-outline-primary">My Account</Link>
+                </li>
+            }
+            {user.id != "" &&
+                <li class="nav-item mx-2">
+                  <Link to="/api/users/logout" class="btn btn-outline-primary">Logout</Link>
+                </li>
+            }
+            <li class="nav-item mx-2">
+              <Link to="/" class="btn btn-outline-primary">Front Page</Link>
+            </li>
           </ul>
         </div>
       </div>
