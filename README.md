@@ -62,3 +62,37 @@ mysql -u root -p
 ```
 sudo certbot --nginx -d domain.com -d www.domain.com
 ```
+
+## How to create subdomain
+
+- Add an A record with your subdomain
+- Create a new file on /etc/nginx/sites-available with the following server block.
+```
+server {
+        listen 80;
+        listen [::]:80;
+
+        root /home/user/myapp;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name myapp.paken.xyz;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+```
+- Create a link on sites-enabled with this command:
+```
+sudo ln -s ../sites-available/myapp.paken.xyz .
+```
+- Use this command to make sure nginx has permission to access the folder:
+```
+sudo gpasswd -a www-data user
+```
+- Restart nginx and test the website on your browser.
+- Run certbot on your new subdomain like this.
+```
+sudo certbot --nginx -d myapp.paken.xyz
+```
+- Your subdomain should now be working at https://myapp.paken.xyz
