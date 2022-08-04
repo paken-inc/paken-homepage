@@ -31,6 +31,7 @@
 - Add ssh key to ~/.ssh/authorized_keys
 - Create new user
 - Activate firewall
+- Set timezone to Europe/Lisbon
 - Install Nginx
 - Install NodeJS
 - Git clone NodeJS Application
