@@ -32,6 +32,9 @@
 - Create new user
 - Activate firewall
 - Set timezone to Europe/Lisbon
+```
+sudo timedatectl set-timezone Europe/Lisbon
+```
 - Install Nginx
 - Install NodeJS
 - Git clone NodeJS Application
