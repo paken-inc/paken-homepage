@@ -35,9 +35,9 @@ export default function Products() {
                       <img src={mainwikiLogo} />
                     </div>
                   </div>
-                  <h5 class="card-title">MainWiki</h5>
-                  <p class="card-text">Our main repository of knowledge and information.</p>
-                  <a target="_blank" href="https://mainwiki.paken.xyz" class="btn btn-primary">Visit</a>
+                  <h5 class="card-title">MainWiki3</h5>
+                  <p class="card-text">A repository of knowledge and information. Version 3.</p>
+                  <a target="_blank" href="https://mainwiki3.paken.xyz" class="btn btn-primary">Visit</a>
                 </div>
               </div>
             </li>
