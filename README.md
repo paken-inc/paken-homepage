@@ -64,6 +64,11 @@ sudo timedatectl set-timezone Europe/Lisbon
 mysql -u root -p
 ```
 
+- Import SQL file
+```
+mysql -u root -p database_name < file.sql
+```
+
 - Create SSL certificate
 ```
 sudo certbot --nginx -d domain.com -d www.domain.com
