@@ -69,6 +69,11 @@ mysql -u root -p
 mysql -u root -p database_name < file.sql
 ```
 
+- Export SQL file
+```
+mysqldump -u root -p database_name > file.sql
+```
+
 - Create SSL certificate
 ```
 sudo certbot --nginx -d domain.com -d www.domain.com
