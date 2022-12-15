@@ -26,6 +26,14 @@
 }
 ```
 
+## Server Setup Links
+
+- https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-22-04
+- https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-22-04
+- https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-22-04
+- https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-22-04
+- https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-22-04
+
 ## Server Setup
 
 - Add ssh key to ~/.ssh/authorized_keys
