@@ -81,12 +81,13 @@ html {
   display: inline-block;
   margin-right: 25px;
   margin-bottom: 25px;
+  width: 300px;
 }
 
-.stackapp-logo-lg {
+.logo-lg {
   width: 125px;
 }
 
-.stackapp-logo-lg img {
+.logo-lg img {
   width: 100%;
 }

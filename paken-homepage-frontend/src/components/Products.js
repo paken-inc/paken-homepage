@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import stackappLogo from '../images/stackapp-logo.png';
-import mainwikiLogo from '../images/mainwiki-logo.png';
+import pmcLogo from '../images/pmc-logo.png';
 
 export default function Products() {
   return (
@@ -16,13 +16,28 @@ export default function Products() {
               <div className="card">
                 <div class="card-body">
                   <div class="card-img-top pb-3">
-                    <div class="stackapp-logo-lg">
+                    <div class="logo-lg">
                       <img src={stackappLogo} />
                     </div>
                   </div>
                   <h5 class="card-title">Stackapp</h5>
                   <p class="card-text">Display unanswered questions from Stackexchange</p>
                   <a target="_blank" href="https://stackapp.paken.xyz" class="btn btn-primary">Visit</a>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div className="card">
+                <div class="card-body">
+                  <div class="card-img-top pb-3">
+                    <div class="logo-lg">
+                      <img src={pmcLogo} />
+                    </div>
+                  </div>
+                  <h5 class="card-title">PMC</h5>
+                  <p class="card-text">Productivity Management Center</p>
+                  <br/>
+                  <a target="_blank" href="https://pmc.paken.xyz" class="btn btn-primary">Visit</a>
                 </div>
               </div>
             </li>
