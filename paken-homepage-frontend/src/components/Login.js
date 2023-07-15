@@ -35,7 +35,12 @@ export default function Login() {
       axios.post(config.BACKEND_URL + '/api/users/login', loginData)
       .then(function (response) {
         console.log(response['data']);
-        navigate("/my-account");
+        if (response.data.status == "OK") {
+          navigate("/my-account");
+        }
+        else {
+          alert("Invalid credentials.")
+        }
       })
       .catch(function (error) {
         console.log(error);
