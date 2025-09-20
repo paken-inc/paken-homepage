@@ -26,10 +26,10 @@ app.use(session({secret: secretConfig.SESSION_KEY, name: secretConfig.SESSION_NA
 
 function connectDB() {
   var con = mysql.createConnection({
-      host: 'localhost',
-      user: 'root',
-      password: '',
-      database: 'paken',
+      host: secretConfig.DB_HOST,
+      user: secretConfig.DB_USER,
+      password: secretConfig.DB_PASSWORD,
+      database: secretConfig.DB_NAME,
   });
   con.connect(function(err) {
       if (err) {
