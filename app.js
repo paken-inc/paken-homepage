@@ -319,60 +319,60 @@ app.post("/api/posts/delete", (req, res) => {
 
 app.get('/', (req,res) => {
   console.log(req.session.loggedIn);
-  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+  res.sendFile(path.resolve(__dirname) + '/frontend/dist/index.html');
 });
 
 app.get('/login', (req,res) => {
   console.log(req.session.loggedIn);
-  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+  res.sendFile(path.resolve(__dirname) + '/frontend/dist/index.html');
 });
 
 app.get('/my-account', (req,res) => {
   console.log(req.session.loggedIn);
-  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+  res.sendFile(path.resolve(__dirname) + '/frontend/dist/index.html');
 });
 
 app.get('/products', (req,res) => {
   console.log(req.session.loggedIn);
-  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+  res.sendFile(path.resolve(__dirname) + '/frontend/dist/index.html');
 });
 
 app.get('/sign-up', (req,res) => {
   console.log(req.session.loggedIn);
-  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+  res.sendFile(path.resolve(__dirname) + '/frontend/dist/index.html');
 });
 
 app.get('/blog', (req,res) => {
   console.log(req.session.loggedIn);
-  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+  res.sendFile(path.resolve(__dirname) + '/frontend/dist/index.html');
 });
 
 app.get('/about', (req,res) => {
   console.log(req.session.loggedIn);
-  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+  res.sendFile(path.resolve(__dirname) + '/frontend/dist/index.html');
 });
 
 app.get('/admin', (req,res) => {
   console.log(req.session.loggedIn);
-  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+  res.sendFile(path.resolve(__dirname) + '/frontend/dist/index.html');
 });
 
 app.get('/admin/login', (req,res) => {
   console.log(req.session.loggedIn);
-  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+  res.sendFile(path.resolve(__dirname) + '/frontend/dist/index.html');
 });
 
 app.get('/admin/posts', (req,res) => {
   console.log(req.session.loggedIn);
-  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+  res.sendFile(path.resolve(__dirname) + '/frontend/dist/index.html');
 });
 
 app.get('/admin/register', (req,res) => {
   console.log(req.session.loggedIn);
-  res.sendFile(path.resolve(__dirname) + '/paken-homepage-frontend/build/index.html');
+  res.sendFile(path.resolve(__dirname) + '/frontend/dist/index.html');
 });
 
-app.use(express.static('paken-homepage-frontend/build'))
+app.use(express.static('frontend/dist'))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
