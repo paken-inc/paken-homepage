@@ -1,5 +1,5 @@
 var mysql = require('mysql2');
-var secretConfig = require('../secret-config.json')
+var secretConfig = require('../secret-config.json');
 
 function connectDB() {
   var con = mysql.createConnection({
