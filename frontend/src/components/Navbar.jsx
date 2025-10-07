@@ -75,7 +75,7 @@ export default function Navbar() {
             }
             {user.id != "" &&
                 <li class="nav-item mx-2">
-                  <Link to="/api/users/logout" class="btn btn-outline-primary">Logout</Link>
+                  <a href="/api/users/logout" class="btn btn-outline-primary">Logout</a>
                 </li>
             }
           </ul>
